@@ -9,7 +9,7 @@ type AmazonEnv = {
   AMAZON_AWS_ACCESS_KEY_ID?: string;
   AMAZON_AWS_SECRET_ACCESS_KEY?: string;
   AMAZON_AWS_SESSION_TOKEN?: string;
-  AMAZON_SPAPI_REGION?: SpApiRegion;
+  AMAZON_SPAPI_REGION?: string;
 };
 
 export type AmazonLwaConfig = {
@@ -60,7 +60,9 @@ export function loadAmazonSpApiConfigFromEnv(env: AmazonEnv = process.env): Amaz
   const sellerId = requireEnv(env.AMAZON_SELLER_ID, "AMAZON_SELLER_ID");
   const marketplaceId = requireEnv(env.AMAZON_MARKETPLACE_ID, "AMAZON_MARKETPLACE_ID");
 
-  const region = env.AMAZON_SPAPI_REGION ?? MARKETPLACE_TO_REGION[marketplaceId];
+  const region =
+    (env.AMAZON_SPAPI_REGION ? parseRegion(env.AMAZON_SPAPI_REGION) : undefined) ??
+    MARKETPLACE_TO_REGION[marketplaceId];
   if (!region) {
     throw new Error("Unknown marketplace id. Set AMAZON_SPAPI_REGION to NA, EU, or FE.");
   }
@@ -95,6 +97,13 @@ function requireEnv(value: string | undefined, key: string): string {
     throw new Error(`Missing required env var: ${key}`);
   }
   return value;
+}
+
+function parseRegion(value: string): SpApiRegion {
+  if (value === "NA" || value === "EU" || value === "FE") {
+    return value;
+  }
+  throw new Error("Invalid AMAZON_SPAPI_REGION. Use NA, EU, or FE.");
 }
 
 export function resolveSpApiEndpoint(region: SpApiRegion): string {
