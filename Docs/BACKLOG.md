@@ -1,9 +1,9 @@
 # Backlog
 
 P0 (MVP critical)
-- [ ] P0.1 Choose implementation stack and baseline tooling.
+- [x] P0.1 Choose implementation stack and baseline tooling.
 - [ ] P0.2 Create repo skeleton (apps/api, apps/worker, packages/core) and CI.
-- [ ] P0.3 Implement SP-API auth, SigV4 signing, and retry/backoff.
+- [x] P0.3 Implement SP-API auth, SigV4 signing, and retry/backoff.
 - [ ] P0.4 Implement Restricted Data Token (RDT) flow.
 - [ ] P0.5 Order ingestion poller (getOrders) with checkpointing.
 - [ ] P0.6 Order details worker (items, address, normalization).

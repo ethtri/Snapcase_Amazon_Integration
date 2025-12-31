@@ -9,5 +9,11 @@
     "build": "tsc -p tsconfig.json",
     "lint": "node ../../scripts/noop.js lint",
     "test": "node ../../scripts/noop.js test"
+  },
+  "dependencies": {
+    "@aws-sdk/hash-node": "^3.600.0",
+    "@aws-sdk/protocol-http": "^3.600.0",
+    "@aws-sdk/signature-v4": "^3.600.0",
+    "@aws-sdk/types": "^3.600.0"
   }
 }
