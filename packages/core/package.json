@@ -1,0 +1,13 @@
+{
+  "name": "@snapcase/core",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "node ../../scripts/noop.js lint",
+    "test": "node ../../scripts/noop.js test"
+  }
+}
